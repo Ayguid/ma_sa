@@ -11,15 +11,22 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/1', function () {
+//     return view('welcome');
+// });
+
+
+
+Route::get('/', 'LandingController@index')->name('landing');
+Route::get('/families/{id}', 'LandingController@showFamilies')->name('showFamilies');
+
+
+// Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/catProductsAll/{id}', 'ProductController@showProductsByCategory')->name('getProductsByCat');
+
+
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-
 
 
 
