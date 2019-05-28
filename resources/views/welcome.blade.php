@@ -88,11 +88,46 @@
 
                   @isset($categories)
                     @foreach ($categories as $cat)
-                      <a class="btn btn-primary" href="{{route('showFamilies',$cat->id)}}" role="button">{{$cat->desc_es}}</a>
+                      @if ($cat->getSubCategories->count()>0)
+                        <a href="{{route('landing', $cat->id)}}" class="btn btn-light">{{$cat->desc_es}}</a>
+                      @else
+                        <a href="#" class="btn btn-light">{{$cat->desc_es}}</a>
+                      @endif
                     @endforeach
+                    {{-- @foreach ($categories as $cat)
+                      <a href="#" class="w-100 btn btn-primary">{{$cat->desc_es}}</a>
+                      @if ($cat->getSubCategories)
+
+                        @foreach ($cat->getSubCategories as $subCat)
+                          <a href="#" class="btn btn-light">{{$subCat->desc_es}}</a>
+                          @foreach ($subCat->products as $prod)
+                            <p>{{$prod->getAttr($cat->id)}}</p>
+
+                          @endforeach
+                        @endforeach
+                      @endif
+                    @endforeach
+                    <br> --}}
+
                   @endisset
 
-                  {{-- {{App\Master_Category::find(1)->getFamilies}} --}}
+                  {{-- {{App\Category::find(1)->getSubCategories[0]->products}} --}}
+
+                  {{-- @foreach (App\Category::find(1)->getSubCategories[0]->products as $prod)
+                    @php
+                      $p=$prod->getAttr(App\Category::find(1)->id);
+                    @endphp
+                      <a href="#" class="btn btn-light"><span class="badge badge-secondary">{{$p->Operaci_n}}</span></a>
+
+                  @endforeach --}}
+
+
+                  {{-- @php
+                    $cat=App\Category::find(1);
+
+                    $attr=$cat->getSubCategories[0]->products[0]->getAttr($cat->getSubCategories[0]->products[0]->table_id);
+                    // DD($attr);
+                  @endphp --}}
 
                 </div>
             </div>

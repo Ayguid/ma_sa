@@ -20,7 +20,7 @@ trait getClassHelper
 
       public function classGetter($id)
       {
-        // dd($this->id);
+        // dd($id);
         switch ($id) {
           case 1:
           $class = Cilindro::class;

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Master_Category;
+use App\Category;
 
 
 class LandingController extends Controller
@@ -14,16 +14,17 @@ class LandingController extends Controller
     }
 
 
-    public function index()
-    {   $categories=Master_Category::all();
+    public function index($id=null)
+    {   $categories=Category::where('parent_id', $id)->get();
         return view('welcome')->with('categories', $categories);
     }
 
-    public function showFamilies($catId)
-    {
-      $families = Master_Category::find($catId)->getFamilies;
-      return view('catalogue.families')->with('families', $families);
-    }
+    // public function showSubCategories($id)
+    // {
+    //   $categories=Category::where('parent_id', $id)->get();
+    //   return view('welcome')->with('categories', $categories);
+    // }
+
 
 
 
