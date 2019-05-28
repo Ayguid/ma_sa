@@ -91,7 +91,8 @@
                       @if ($cat->getSubCategories->count()>0)
                         <a href="{{route('landing', $cat->id)}}" class="btn btn-light">{{$cat->desc_es}}</a>
                       @else
-                        <a href="#" class="btn btn-light">{{$cat->desc_es}}</a>
+                        {{--  --}}
+                        <a href="{{route('productsCat', $cat->id)}}" class="btn btn-primary">{{$cat->desc_es}}</a>
                       @endif
                     @endforeach
                     {{-- @foreach ($categories as $cat)

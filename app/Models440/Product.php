@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models440;
 
 use Illuminate\Database\Eloquent\Model;
 // use App\Productos\Cilindro;
@@ -27,7 +27,7 @@ class Product extends Model
 
 
 
-    public function getAttr($id)
+    public function details($id)
     {
       $class=$this->classGetter($id);
       $new=new $class();

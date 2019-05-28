@@ -1,16 +1,16 @@
 <?php
 namespace App\Helper_Functions;
-use App\Productos\Cilindro;
-use App\Productos\Valvula;
-use App\Productos\Estacion_De_Valvula;
-use App\Productos\Valvula_Auxiliar;
-use App\Productos\Equipo_Para_Vacio;
-use App\Productos\Manipulacion_Y_Equipo;
-use App\Productos\Unidad_FRL;
-use App\Productos\Conexion;
-use App\Productos\Proceso;
-use App\Productos\Automatizacion_Y_Control;
-use App\Productos\Family;
+use App\Models440\Cilindro;
+use App\Models440\Valvula;
+use App\Models440\Estacion_De_Valvula;
+use App\Models440\Valvula_Auxiliar;
+use App\Models440\Equipo_Para_Vacio;
+use App\Models440\Manipulacion_Y_Equipo;
+use App\Models440\Unidad_FRL;
+use App\Models440\Conexion;
+use App\Models440\Proceso;
+use App\Models440\Automatizacion_Y_Control;
+use App\Models440\Family;
 
 
 
@@ -20,7 +20,6 @@ trait getClassHelper
 
       public function classGetter($id)
       {
-        // dd($id);
         switch ($id) {
           case 1:
           $class = Cilindro::class;

@@ -17,12 +17,13 @@
 
 
 
-Route::get('/{id?}', 'LandingController@index')->name('landing');
-// Route::get('/subCat/{id}', 'LandingController@showSubCategories')->name('subCat');
+Route::get('/', 'LandingController@index');
+Route::get('/cat/{id?}', 'LandingController@index')->name('landing');
+Route::get('/productsCat/{id}', 'LandingController@productsByCategory')->name('productsCat');
+
 
 // Route::get('/home', 'HomeController@index')->name('home');
-// Route::get('/catProductsAll/{id}', 'ProductController@showProductsByCategory')->name('getProductsByCat');
-
+//
 
 
 Auth::routes();

@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
+use App\Models440\Category;
+use App\Models440\Product;
 
 
 class LandingController extends Controller
@@ -19,11 +20,14 @@ class LandingController extends Controller
         return view('welcome')->with('categories', $categories);
     }
 
-    // public function showSubCategories($id)
-    // {
-    //   $categories=Category::where('parent_id', $id)->get();
-    //   return view('welcome')->with('categories', $categories);
-    // }
+
+    public function productsByCategory($id)
+    {
+        $products=Category::find($id)->products()->paginate(5);
+        return view('catalogue.products')->with('products', $products);
+    }
+
+
 
 
 

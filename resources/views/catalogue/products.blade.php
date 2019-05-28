@@ -6,19 +6,19 @@
 
 
     @isset($products)
-      {{-- {{$products}} --}}
-      {{-- {{dd($products)}} --}}
+
       @foreach ($products as $product)
+            @php
+            $array = json_decode($product->details($product->table_id), true);
+            $obj=collect($array);
+            @endphp
 
-        {{-- <a class="btn btn-primary" href="#" role="button">{{$product->Familia}}</a> --}}
-
-        @foreach ($product->getAttributes() as $key => $attr)
-          @if ($attr)
-            <strong>{{$key}}</strong>
+            @foreach ($obj as $key => $value)
+              {{$key}} --> {{$value}}
+              <br>
+            @endforeach
             <br>
-            {{$attr}}<br>
-          @endif
-        @endforeach
+
         <hr>
         <br>
       @endforeach
