@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models440\Category;
+
 class AdminController extends Controller
 {
     /**
@@ -21,8 +23,9 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index($id=null)
     {
-        return view('admin');
+        $categories=Category::where('parent_id', $id)->get();
+        return view('admin.admin')->with('categories', $categories);
     }
 }

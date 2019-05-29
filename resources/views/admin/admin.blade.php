@@ -15,6 +15,14 @@
                     @endif
 
                     You are logged in as <strong>ADMIN!</strong>
+
+                    {{-- @isset($categories)
+                      @include('components.categories_menu', ['categories'=>$categories])
+                    @endisset --}}
+
+
+
+
                 </div>
             </div>
         </div>

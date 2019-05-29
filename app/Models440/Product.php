@@ -31,7 +31,7 @@ class Product extends Model
     {
       $class=$this->classGetter($id);
       $new=new $class();
-      return $this->hasOne($new , 'id','child_id')->first();
+      return $this->hasOne($new, 'id', 'child_id')->first();
     }
 
 

@@ -4,9 +4,11 @@ namespace App\Models440;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models440\Product;
+use App\Helper_Functions\getClassHelper;
 
 class Category extends Model
 {
+    use getClassHelper;
 
   // protected $fillable = [
   // ];
@@ -28,6 +30,12 @@ class Category extends Model
     }
 
 
+    public function models()
+    {
+        $class=$this->classGetter($this->table_id);
+        $new=new $class();
+        return $new->select('Modelo')->distinct()->get();
+    }
 
 
 
