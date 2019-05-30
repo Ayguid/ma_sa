@@ -1,5 +1,11 @@
-<div class="row">
+@if ($cat)
+  <div class="">
+    <h3>{{$cat->desc_es}}</h3>
+  </div>
+@endif
 
+
+<div class="row">
 
 
 @isset($categories)

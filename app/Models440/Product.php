@@ -16,11 +16,15 @@ class Product extends Model
     protected $table='products';
 
 
-
-
-    public function details($id)
+    public function getTableName()
     {
-      $class=$this->classGetter($id);
+      return $this->table;
+    }
+
+
+    public function details()
+    {
+      $class=$this->classGetter($this->table_id);
       $new=new $class();
       return $this->hasOne($new, 'id', 'child_id')->first();
     }

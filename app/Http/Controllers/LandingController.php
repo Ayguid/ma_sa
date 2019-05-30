@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Models440\Category;
 use App\Models440\Product;
-
+use App\Helper_Functions\getClassHelper;
 
 class LandingController extends Controller
 {
-
+  use getClassHelper;
 
   public function __construct()
   {
@@ -19,8 +19,16 @@ class LandingController extends Controller
 
   public function index($id=null)
   {
+
     $categories=Category::where('parent_id', $id)->get();
-    return view('welcome')->with('categories', $categories);
+    $cat=Category::where('table_id', $id)->first();
+
+    $data=[
+      'cat'=>$cat,
+      'categories'=>$categories
+    ];
+
+    return view('welcome')->with('data', $data);
   }
 
 
@@ -29,10 +37,12 @@ class LandingController extends Controller
   public function productsByCategory($id)
   {
     $cat=Category::find($id);
+    $masterCat=Category::find($cat->table_id);
     $products=$cat->products();
 
     $data=[
       'cat'=>$cat,
+      'masterCat'=>$masterCat,
       'products'=>$products->paginate(5),
       'models'=>$cat->models()
     ];
@@ -45,56 +55,32 @@ class LandingController extends Controller
   public function productsByModel($id,$string)
   {
     $cat=Category::find($id);
-    switch ($cat->table_id) {
-      case 1:
-      $table = 'cilindros';
-      break;
-      case 2:
-      $table = 'valvulas';
-      break;
-      case 3:
-      $table = 'estaciones_de_valvulas';
-      break;
-      case 4:
-      $table = 'valvulas_auxiliares';
-      break;
-      case 5:
-      $table = 'equipos_para_vacio';
-      break;
-      case 6:
-      $table = 'manipulacion_y_equipos';
-      break;
-      case 7:
-      $table = 'unidades_frl';
-      break;
-      case 8:
-      $table = 'conexiones';
-      break;
-      case 9:
-      $table = 'procesos';
-      break;
-      case 10:
-      $table = 'automatizacion_y_control';
-      break;
-      default:
-      dd('error');
-      break;
-    }
+    $masterCat=Category::find($cat->table_id);
+
+    $class=$this->classGetter($cat->table_id);
+    $new=new $class();
+    $table = $new->getTableName();
 
     $products = Product::join($table, $table.'.id','=', 'products.child_id')
         ->where('Modelo','=', $string)->where('products.category_id', $cat->id);
 
-
     $data=[
       'cat'=>$cat,
+      'masterCat'=>$masterCat,
       'products'=>$products->paginate(5),
-      'models'=>$cat->models($cat->id)
+      'models'=>$cat->models()
     ];
 
     return view('welcome')->with('data', $data);
   }
 
 
+
+public function showProduct($id)
+{
+  $product = Product::find($id);
+  return view('product')->with('product', $product);
+}
 
 
 

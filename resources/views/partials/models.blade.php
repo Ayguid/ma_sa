@@ -1,4 +1,7 @@
-{{-- {{$cat}} --}}
+
+<div class="">
+    <h3>{{$masterCat->desc_es}}-->{{$cat->desc_es}}</h3>
+</div>
 
 @foreach ($models as $model)
 

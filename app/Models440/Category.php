@@ -32,21 +32,12 @@ class Category extends Model
 
     public function models()
     {
-        $class=$this->classGetter($this->table_id);
-        $new=new $class();
-        return $new->select('Modelo')->where('Modelo', '!=', null)->where('category_id', $this->id)->distinct()->orderBy('Modelo')->get();
+      $class=$this->classGetter($this->table_id);
+      $new=new $class();
+      return $new->select('Modelo')->where('Modelo', '!=', null)->where('category_id', $this->id)->distinct()->orderBy('Modelo')->get();
     }
 
 
-    // public function productsByModel()
-    // {
-    //   $class=$this->classGetter($this->table_id);
-    //   $new=new $class();
-    //   dd($new);
-    //   $products=$this->products();
-    //   $query = $products->join('cilindros', 'cilindros.id', '=', 'products.child_id')->select('products.*')->get();
-    //   return $query;
-    // }
 
 
 }
