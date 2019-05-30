@@ -19,7 +19,10 @@
 
 Route::get('/', 'LandingController@index');
 Route::get('/cat/{id?}', 'LandingController@index')->name('landing');
+
+
 Route::get('/productsCat/{id}', 'LandingController@productsByCategory')->name('productsCat');
+Route::get('/productsModel/{id}/{string?}', 'LandingController@productsByModel')->name('productsModel');
 
 
 // Route::get('/home', 'HomeController@index')->name('home');

@@ -3,12 +3,15 @@
 @section('content')
   <div class="container">
 
+
     @isset($categories)
-      @include('components.categories_menu', ['categories'=>$categories])
+      @include('partials.categories_menu', ['categories'=>$categories])
     @endisset
 
     @isset($data)
-      @include('components.products', ['products'=>$data['products']])
+      @include('partials.models', ['models'=>$data['models'], 'cat'=>$data['cat'] ])
+      @include('partials.products', ['products'=>$data['products']])
+
     @endisset
 
   </div>
